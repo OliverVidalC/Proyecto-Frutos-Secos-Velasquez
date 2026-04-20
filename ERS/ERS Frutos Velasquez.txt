@@ -24,3 +24,50 @@ RNF02 Disponibilidad El sistema debe funcionar de forma local (offline) para ase
 RNF03 Integridad Los datos de ventas no deben poder modificarse una vez cerrada la transacción para evitar fraudes.
 RNF04 Portabilidad Debería ser accesible desde una tablet o laptop para movilidad dentro del local.
 
+Modelo Entidad-Relación: Frutos Velásquez
+1. Entidades y Atributos
+
+A. Entidad: PRODUCTO
+
+id_producto (PK): Entero, Autoincremental.
+nombre: Cadena (100).
+id_categoria (FK): Entero. Conecta con la tabla Categoría.
+tipo_medida: Cadena. (Ej: "Gramos", "Kilos", "Unidad").
+costo_compra: Decimal/Double.
+precio_venta: Decimal/Double.
+stock_actual: Decimal (para soportar gramos/kilos).
+stock_minimo: Decimal. Umbral para alertas.
+
+
+B. Entidad: CATEGORÍA
+
+id_categoria (PK): Entero, Autoincremental.
+nombre: Cadena. (Ej: "Frutos Secos", "Semillas", "Deshidratados").
+
+
+C. Entidad: VENTA (Boleta)
+
+id_venta (PK): Entero, Autoincremental.
+fecha_hora: Timestamp (Fecha y hora exacta).
+total: Decimal/Double. Calculado automáticamente.
+medio_pago: Cadena. (Efectivo, Transferencia, Tarjeta).
+
+D. Entidad: DETALLE_VENTA
+Esta es una tabla intermedia para permitir que una venta tenga muchos productos.
+
+id_detalle (PK): Entero, Autoincremental.
+id_venta (FK): Entero.
+id_producto (FK): Entero.
+cantidad: Decimal. (Soporta unidades o peso).
+subtotal: Decimal. (Precio * Cantidad).
+
+2. Relaciones Lógicas
+
+CATEGORÍA a PRODUCTO (1:N): Una categoría puede agrupar múltiples productos, pero un producto pertenece a una sola categoría.
+PRODUCTO a DETALLE VENTA (1:N): Un producto puede aparecer en muchos detalles de distintas ventas.
+VENTA a DETALLE VENTA (1:N): Una venta (boleta) se compone de uno o más detalles de productos seleccionados en el carrito.
+
+3. Descripción del Modelo para el Informe
+
+"El diseño de la base de datos para Frutos Velásquez se centra en la integridad del inventario y la agilidad de la venta. El modelo utiliza una estructura relacional donde la tabla PRODUCTO almacena costos y precios para permitir el cálculo automático de utilidades netas (RF10).
+La relación entre VENTA y PRODUCTO se resuelve mediante una tabla intermedia de DETALLE_VENTA, lo que permite registrar múltiples artículos en una sola transacción (RF05) y descontar el stock de forma precisa, ya sea por peso o por unidad (RF02, RF04). Finalmente, el atributo stock mínimo en la entidad Producto actúa como disparador para el sistema de alertas de quiebre de stock (RF03)."
