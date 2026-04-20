@@ -1,0 +1,26 @@
+1. Introducción
+El sistema para Frutos Velásquez busca automatizar el ciclo de ventas y control de inventario. El objetivo principal es eliminar el registro manual en papel, reducir errores de cálculo y permitir la toma de decisiones basada en datos reales de ventas y stock.
+
+2. Requerimientos Funcionales (RF)
+Gestión de Inventario (Stock)
+RF01 - Registro de Productos: El sistema debe permitir ingresar productos con nombre, categoría (frutos secos, semillas, deshidratados), costo de compra y precio de venta.
+RF02 - Control de Unidades: Debe soportar venta por peso (gramos/kilos) y por unidad (envases).
+RF03 - Alerta de Stock Mínimo: El sistema debe avisar cuando un producto esté por debajo de un umbral definido para evitar quiebres de stock.
+RF04 - Actualización de Stock: El inventario debe descontarse automáticamente tras cada venta y permitir ingresos manuales por mermas o nuevas compras.
+
+Gestión de Ventas
+RF05 - Carrito de Ventas: Interfaz rápida para seleccionar productos y calcular el total de la boleta de forma automática.
+RF06 - Medios de Pago: Registro de ventas con efectivo, transferencia o tarjeta (Débito/Crédito).
+RF07 - Historial de Ventas: Listado de todas las transacciones realizadas con opción de ver detalles por fecha y hora.
+Estadísticas e Informes
+
+RF08 - Reporte de Ventas Diarias: Resumen del dinero recaudado al final de la jornada.
+RF09 - Ranking de Productos: Visualización de los productos más vendidos ("Best Sellers").
+RF10 - Cálculo de Ganancias: Informe de utilidad neta restando el costo de compra al precio de venta total.
+
+3. Requerimientos No Funcionales (RNF)
+RNF01 Usabilidad La interfaz debe ser simple y rápida, optimizada para alguien que viene de usar papel.
+RNF02 Disponibilidad El sistema debe funcionar de forma local (offline) para asegurar que se pueda vender aunque se caiga el internet.
+RNF03 Integridad Los datos de ventas no deben poder modificarse una vez cerrada la transacción para evitar fraudes.
+RNF04 Portabilidad Debería ser accesible desde una tablet o laptop para movilidad dentro del local.
+
